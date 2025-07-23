@@ -5,7 +5,7 @@ export const TaskContext = createContext();
 export function TaskProvider({ children }) {
   const [tasks, setTasks] = useState([]);
 
-  // Fetch tasks on mount
+  // fetch tasks on mount
   useEffect(() => {
     fetch("http://localhost:6001/tasks")
       .then((res) => res.json())
@@ -13,7 +13,7 @@ export function TaskProvider({ children }) {
       .catch((err) => console.error("Failed to fetch tasks:", err));
   }, []);
 
-  // Add a new task (POST + update state)
+  // add a new task 
   function addTask(title) {
     const newTask = {
       title,
@@ -34,7 +34,7 @@ export function TaskProvider({ children }) {
       .catch((err) => console.error("Failed to add task:", err));
   }
 
-  // Toggle task completion (PATCH + update state)
+  
   function toggleComplete(taskId) {
     const task = tasks.find((t) => t.id === taskId);
     if (!task) return;
